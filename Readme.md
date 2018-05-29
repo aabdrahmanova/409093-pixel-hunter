@@ -1,8 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алсу Абдрахманова](https://up.htmlacademy.ru/ecmascript/5/user/409093).
-* Наставник: [Даниил Оношко]
-(https://htmlacademy.ru/profile/id154426).
+* Наставник: [Даниил Оношко](https://htmlacademy.ru/profile/id154426).
 
 ---
 
