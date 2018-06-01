@@ -75,10 +75,18 @@ showScreen(0);
 document.onkeydown = (evt) => {
   switch (evt.keyCode) {
     case KeyCodes.RIGHT:
-      findIndex() < SCREENS.length - 1 ? showScreen(findIndex() + 1) : showScreen(findIndex());
+      if (findIndex() < SCREENS.length - 1) {
+        showScreen(findIndex() + 1);
+      } else {
+        showScreen(findIndex());
+      }
       break;
     case KeyCodes.LEFT:
-      findIndex() > 0 ? showScreen(findIndex() - 1) : showScreen(findIndex());
+      if (findIndex() > 0) {
+        showScreen(findIndex() - 1);
+      } else {
+        showScreen(findIndex());
+      }
       break;
   }
 };
