@@ -1,38 +1,40 @@
 'use strict';
 
-const LEFT_KEYCODE = 37;
-const RIGHT_KEYCODE = 39;
+const KeyCodes = {
+  LEFT: 37,
+  RIGHT: 39
+};
 const SCREENS = [
   {
-    class: `greeting`,
+    id: `greeting`,
     link: document.getElementById(`greeting`)
   },
   {
-    class: `rules`,
+    id: `rules`,
     link: document.getElementById(`rules`)
   },
   {
-    class: `game-1`,
+    id: `game-1`,
     link: document.getElementById(`game-1`)
   },
   {
-    class: `game-2`,
+    id: `game-2`,
     link: document.getElementById(`game-2`)
   },
   {
-    class: `game-3`,
+    id: `game-3`,
     link: document.getElementById(`game-3`)
   },
   {
-    class: `stats`,
+    id: `stats`,
     link: document.getElementById(`stats`)
   },
   {
-    class: `modal-error`,
+    id: `modal-error`,
     link: document.getElementById(`modal-error`)
   },
   {
-    class: `modal-confirm`,
+    id: `modal-confirm`,
     link: document.getElementById(`modal-confirm`)
   }
 ];
@@ -56,76 +58,30 @@ ARROWS.innerHTML = `<style>
 
 document.body.appendChild(ARROWS);
 
-let main = document.querySelector(`main.central`);
-let left = document.querySelectorAll(`.arrows__btn`)[0];
-let right = document.querySelectorAll(`.arrows__btn`)[1];
+const MAIN = document.querySelector(`main.central`);
+const BUTTONS = document.querySelectorAll(`.arrows__btn`);
+
 let showScreen = (num) => {
-  main.innerHTML = ``;
-  main.appendChild(document.importNode(SCREENS[num].link.content, true));
-  main.className = `central ` + SCREENS[num].class;
+  MAIN.innerHTML = ``;
+  MAIN.appendChild(document.importNode(SCREENS[num].link.content, true));
+  MAIN.setAttribute(`data-id`, SCREENS[num].id);
 };
-let showNextScreen = () => {
-  switch (main.className) {
-    case `central greeting`:
-      showScreen(1);
-      break;
-    case `central rules`:
-      showScreen(2);
-      break;
-    case `central game-1`:
-      showScreen(3);
-      break;
-    case `central game-2`:
-      showScreen(4);
-      break;
-    case `central game-3`:
-      showScreen(5);
-      break;
-    case `central stats`:
-      showScreen(6);
-      break;
-    case `central modal-error`:
-      showScreen(7);
-      break;
-  }
-};
-let showPreviousScreen = () => {
-  switch (main.className) {
-    case `central rules`:
-      showScreen(0);
-      break;
-    case `central game-1`:
-      showScreen(1);
-      break;
-    case `central game-2`:
-      showScreen(2);
-      break;
-    case `central game-3`:
-      showScreen(3);
-      break;
-    case `central stats`:
-      showScreen(4);
-      break;
-    case `central modal-error`:
-      showScreen(5);
-      break;
-    case `central modal-confirm`:
-      showScreen(6);
-      break;
-  }
+let findIndex = () => {
+  return SCREENS.indexOf(SCREENS.find((item) => item.id === MAIN.getAttribute(`data-id`)));
 };
 
 showScreen(0);
 
 document.onkeydown = (evt) => {
   switch (evt.keyCode) {
-    case RIGHT_KEYCODE:
-      showNextScreen();
+    case KeyCodes.RIGHT:
+      findIndex() < SCREENS.length - 1 ? showScreen(findIndex() + 1) : showScreen(findIndex());
       break;
-    case LEFT_KEYCODE:
-      showPreviousScreen();
+    case KeyCodes.LEFT:
+      findIndex() > 0 ? showScreen(findIndex() - 1) : showScreen(findIndex());
       break;
   }
 };
-left.onclick = () => showPreviousScreen();
-right.onclick = () => showNextScreen();
+
+BUTTONS[0].onclick = () => findIndex() > 0 ? showScreen(findIndex() - 1) : showScreen(findIndex());
+BUTTONS[1].onclick = () => findIndex() < SCREENS.length - 1 ? showScreen(findIndex() + 1) : showScreen(findIndex());
