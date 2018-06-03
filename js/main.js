@@ -59,37 +59,29 @@ ARROWS.innerHTML = `<style>
 document.body.appendChild(ARROWS);
 
 const MAIN = document.querySelector(`main.central`);
-const BUTTONS = document.querySelectorAll(`.arrows__btn`);
-
+const buttons = {
+  LEFT: document.querySelectorAll(`.arrows__btn`)[0],
+  RIGHT: document.querySelectorAll(`.arrows__btn`)[1]
+};
+let currentScreenIndex = 0;
 let showScreen = (num) => {
+  currentScreenIndex = num;
   MAIN.innerHTML = ``;
   MAIN.appendChild(document.importNode(SCREENS[num].link.content, true));
   MAIN.setAttribute(`data-id`, SCREENS[num].id);
 };
-let findIndex = () => {
-  return SCREENS.indexOf(SCREENS.find((item) => item.id === MAIN.getAttribute(`data-id`)));
-};
-
 showScreen(0);
+
+buttons.LEFT.onclick = () => currentScreenIndex > 0 ? showScreen(currentScreenIndex - 1) : showScreen(currentScreenIndex);
+buttons.RIGHT.onclick = () => currentScreenIndex < SCREENS.length - 1 ? showScreen(currentScreenIndex + 1) : showScreen(currentScreenIndex);
 
 document.onkeydown = (evt) => {
   switch (evt.keyCode) {
     case KeyCodes.RIGHT:
-      if (findIndex() < SCREENS.length - 1) {
-        showScreen(findIndex() + 1);
-      } else {
-        showScreen(findIndex());
-      }
+      buttons.RIGHT.onclick();
       break;
     case KeyCodes.LEFT:
-      if (findIndex() > 0) {
-        showScreen(findIndex() - 1);
-      } else {
-        showScreen(findIndex());
-      }
+      buttons.LEFT.onclick();
       break;
   }
 };
-
-BUTTONS[0].onclick = () => findIndex() > 0 ? showScreen(findIndex() - 1) : showScreen(findIndex());
-BUTTONS[1].onclick = () => findIndex() < SCREENS.length - 1 ? showScreen(findIndex() + 1) : showScreen(findIndex());
