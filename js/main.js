@@ -59,12 +59,11 @@ ARROWS.innerHTML = `<style>
 document.body.appendChild(ARROWS);
 
 const MAIN = document.querySelector(`main.central`);
-const buttons = {
-  LEFT: document.querySelectorAll(`.arrows__btn`)[0],
-  RIGHT: document.querySelectorAll(`.arrows__btn`)[1]
-};
+const buttons = document.querySelectorAll(`.arrows__btn`);
+const BUTTON_LEFT = buttons[0];
+const BUTTON_RIGHT = buttons[1];
 let currentScreenIndex = 0;
-let showScreen = (num) => {
+const showScreen = (num) => {
   currentScreenIndex = num;
   MAIN.innerHTML = ``;
   MAIN.appendChild(document.importNode(SCREENS[num].link.content, true));
@@ -72,16 +71,16 @@ let showScreen = (num) => {
 };
 showScreen(0);
 
-buttons.LEFT.onclick = () => currentScreenIndex > 0 ? showScreen(currentScreenIndex - 1) : showScreen(currentScreenIndex);
-buttons.RIGHT.onclick = () => currentScreenIndex < SCREENS.length - 1 ? showScreen(currentScreenIndex + 1) : showScreen(currentScreenIndex);
+BUTTON_LEFT.onclick = () => currentScreenIndex > 0 ? showScreen(currentScreenIndex - 1) : showScreen(currentScreenIndex);
+BUTTON_LEFT.onclick = () => currentScreenIndex < SCREENS.length - 1 ? showScreen(currentScreenIndex + 1) : showScreen(currentScreenIndex);
 
 document.onkeydown = (evt) => {
   switch (evt.keyCode) {
     case KeyCodes.RIGHT:
-      buttons.RIGHT.onclick();
+      BUTTON_LEFT.onclick();
       break;
     case KeyCodes.LEFT:
-      buttons.LEFT.onclick();
+      BUTTON_RIGHT.onclick();
       break;
   }
 };
