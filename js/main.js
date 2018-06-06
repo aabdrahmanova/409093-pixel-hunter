@@ -4,7 +4,7 @@ const KeyCodes = {
   LEFT: 37,
   RIGHT: 39
 };
-let screens = [
+const screens = [
   {
     id: `greeting`,
     link: document.getElementById(`greeting`)
@@ -38,7 +38,7 @@ let screens = [
     link: document.getElementById(`modal-confirm`)
   }
 ];
-let arrows = document.createElement(`div`);
+const arrows = document.createElement(`div`);
 arrows.className = `arrows__wrap`;
 arrows.innerHTML = `<style>
                     .arrows__wrap {
@@ -58,10 +58,10 @@ arrows.innerHTML = `<style>
 
 document.body.appendChild(arrows);
 
-let main = document.querySelector(`main.central`);
-let buttons = document.querySelectorAll(`.arrows__btn`);
-let buttonLeft = buttons[0];
-let buttonRight = buttons[1];
+const main = document.querySelector(`main.central`);
+const buttons = document.querySelectorAll(`.arrows__btn`);
+const buttonLeft = buttons[0];
+const buttonRight = buttons[1];
 
 let currentScreenIndex = 0;
 
