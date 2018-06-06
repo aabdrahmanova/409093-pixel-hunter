@@ -4,7 +4,7 @@ const KeyCodes = {
   LEFT: 37,
   RIGHT: 39
 };
-const screens = [
+let screens = [
   {
     id: `greeting`,
     link: document.getElementById(`greeting`)
