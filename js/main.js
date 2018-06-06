@@ -66,7 +66,7 @@ const buttonRight = buttons[1];
 let currentScreenIndex = 0;
 
 const showScreen = (num) => {
-  let lastScreenIndex = screens.length - 1;
+  const lastScreenIndex = screens.length - 1;
 
   if (num < 0) {
     currentScreenIndex = lastScreenIndex;
