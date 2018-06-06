@@ -4,7 +4,7 @@ const KeyCodes = {
   LEFT: 37,
   RIGHT: 39
 };
-const SCREENS = [
+let screens = [
   {
     id: `greeting`,
     link: document.getElementById(`greeting`)
@@ -38,9 +38,9 @@ const SCREENS = [
     link: document.getElementById(`modal-confirm`)
   }
 ];
-const ARROWS = document.createElement(`div`);
-ARROWS.className = `arrows__wrap`;
-ARROWS.innerHTML = `<style>
+let arrows = document.createElement(`div`);
+arrows.className = `arrows__wrap`;
+arrows.innerHTML = `<style>
                     .arrows__wrap {
                       position: absolute;
                       top: 95px;
@@ -56,40 +56,43 @@ ARROWS.innerHTML = `<style>
                     <button class="arrows__btn"><-</button>
                     <button class="arrows__btn">-></button>`;
 
-document.body.appendChild(ARROWS);
+document.body.appendChild(arrows);
 
-const MAIN = document.querySelector(`main.central`);
-const BUTTONS = document.querySelectorAll(`.arrows__btn`);
+let main = document.querySelector(`main.central`);
+let buttons = document.querySelectorAll(`.arrows__btn`);
+let buttonLeft = buttons[0];
+let buttonRight = buttons[1];
 
-let showScreen = (num) => {
-  MAIN.innerHTML = ``;
-  MAIN.appendChild(document.importNode(SCREENS[num].link.content, true));
-  MAIN.setAttribute(`data-id`, SCREENS[num].id);
-};
-let findIndex = () => {
-  return SCREENS.indexOf(SCREENS.find((item) => item.id === MAIN.getAttribute(`data-id`)));
+let currentScreenIndex = 0;
+
+const showScreen = (num) => {
+  let lastScreenIndex = screens.length - 1;
+
+  if (num < 0) {
+    currentScreenIndex = lastScreenIndex;
+  } else if (num > lastScreenIndex) {
+    currentScreenIndex = 0;
+  } else {
+    currentScreenIndex = num;
+  }
+
+  main.innerHTML = ``;
+  main.appendChild(document.importNode(screens[currentScreenIndex].link.content, true));
+  main.setAttribute(`data-id`, screens[currentScreenIndex].id);
 };
 
 showScreen(0);
 
+buttonLeft.onclick = () => showScreen(currentScreenIndex - 1);
+buttonRight.onclick = () => showScreen(currentScreenIndex + 1);
+
 document.onkeydown = (evt) => {
   switch (evt.keyCode) {
     case KeyCodes.RIGHT:
-      if (findIndex() < SCREENS.length - 1) {
-        showScreen(findIndex() + 1);
-      } else {
-        showScreen(findIndex());
-      }
+      showScreen(currentScreenIndex + 1);
       break;
     case KeyCodes.LEFT:
-      if (findIndex() > 0) {
-        showScreen(findIndex() - 1);
-      } else {
-        showScreen(findIndex());
-      }
+      showScreen(currentScreenIndex - 1);
       break;
   }
 };
-
-BUTTONS[0].onclick = () => findIndex() > 0 ? showScreen(findIndex() - 1) : showScreen(findIndex());
-BUTTONS[1].onclick = () => findIndex() < SCREENS.length - 1 ? showScreen(findIndex() + 1) : showScreen(findIndex());
