@@ -1,5 +1,6 @@
-import {changeScreen, render} from './render';
+import {changeScreen, render} from '../render';
 import gameOne from './game-1';
+import greeting from './greeting';
 
 const template = `
 <header class="header">
@@ -25,20 +26,34 @@ const template = `
     <input class="rules__input" type="text" placeholder="Ваше Имя">
     <button class="rules__button  continue" type="submit">Go!</button>
   </form>
-</div>`;
+</div>
+<footer class="footer">
+<a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
+<span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
+<div class="footer__social-links">
+  <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
+  <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
+  <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
+  <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
+</div>
+</footer>`;
 
 const rules = render(template);
-const rulesButton = rules.querySelector(`.rules__button`);
+const buttonGo = rules.querySelector(`.rules__button`);
 const nameInput = rules.querySelector(`.rules__input`);
-rulesButton.disabled = true;
-nameInput.addEventListener(`input`, () => {
-  if (nameInput.value !== ``) {
-    rulesButton.disabled = false;
-  } else {
-    rulesButton.disabled = true;
-  }
-});
+const back = rules.querySelector(`.back`);
 
-rulesButton.onclick = () => changeScreen(gameOne);
+buttonGo.disabled = true;
+
+nameInput.oninput = () => {
+  if (nameInput.value !== ``) {
+    buttonGo.disabled = false;
+  } else {
+    buttonGo.disabled = true;
+  }
+};
+
+back.onclick = () => changeScreen(greeting);
+buttonGo.onclick = () => changeScreen(gameOne);
 
 export default rules;

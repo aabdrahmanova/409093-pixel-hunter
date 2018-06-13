@@ -1,5 +1,6 @@
-import {changeScreen, render} from './render';
+import {changeScreen, render} from '../render';
 import stats from './stats';
+import greeting from './greeting';
 
 const template = `
 <header class="header">
@@ -43,11 +44,26 @@ const template = `
       <li class="stats__result stats__result--unknown"></li>
     </ul>
   </div>
-</div>`;
+</div>
+<footer class="footer">
+<a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
+<span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
+<div class="footer__social-links">
+  <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
+  <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
+  <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
+  <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
+</div>
+</footer>`;
 
 const gameThree = render(template);
+const options = gameThree.querySelectorAll(`.game__option`);
 const back = gameThree.querySelector(`.back`);
 
-back.onclick = () => changeScreen(stats);
+options.forEach((item) => {
+  item.onclick = () => changeScreen(stats);
+});
+
+back.onclick = () => changeScreen(greeting);
 
 export default gameThree;

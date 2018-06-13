@@ -5,7 +5,7 @@ export const render = (template) => {
   return screen;
 };
 
-const main = document.querySelector(`main.central`);
+const main = document.querySelector(`.central`);
 
 export const changeScreen = (element) => {
   main.innerHTML = ``;
