@@ -4,7 +4,7 @@ const timer = (time) => ({
     if (time > 0) {
       return time;
     } else {
-      return `Время истекло`;
+      return -1;
     }
   }
 });

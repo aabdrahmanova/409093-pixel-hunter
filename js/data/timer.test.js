@@ -8,7 +8,7 @@ describe(`how much time is left`, () => {
   });
 
   it(`there is no time left`, () => {
-    assert.equal(timer(1).tick(), `Время истекло`);
-    assert.equal(timer(-10).tick(), `Время истекло`);
+    assert.equal(timer(1).tick(), -1);
+    assert.equal(timer(-10).tick(), -1);
   });
 });

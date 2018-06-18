@@ -1,10 +1,10 @@
-const points = {
+const Points = {
   FAST: 150,
   NORMAL: 100,
   SLOW: 50
 };
 
-const speed = {
+const Speed = {
   FAST: `fast`,
   NORMAL: `normal`,
   SLOW: `slow`
@@ -26,14 +26,14 @@ const getResult = (answersArr, lives) => {
   for (let i = 0; i < answersArr.length; i++) {
     if (answersArr[i].passed) {
       switch (answersArr[i].speed) {
-        case speed.FAST:
-          result += points.FAST;
+        case Speed.FAST:
+          result += Points.FAST;
           break;
-        case speed.NORMAL:
-          result += points.NORMAL;
+        case Speed.NORMAL:
+          result += Points.NORMAL;
           break;
-        case speed.SLOW:
-          result += points.SLOW;
+        case Speed.SLOW:
+          result += Points.SLOW;
           break;
         default:
           throw new Error(`type of speed is not correct`);
