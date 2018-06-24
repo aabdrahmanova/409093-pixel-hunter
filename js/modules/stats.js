@@ -1,10 +1,7 @@
 import {changeScreen, render} from '../render';
 import greeting from './greeting';
-import screens from '../data/data';
 import {headerTemplate} from './header';
 import footerTemplate from './footer';
-
-screens.isGamescreen = false;
 
 const template = `
 ${headerTemplate()}

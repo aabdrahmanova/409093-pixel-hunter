@@ -1,6 +1,7 @@
 import {changeScreen, render} from '../render';
-import greeting from './greeting';
+// import greeting from './greeting';
 import footerTemplate from './footer';
+import {startGame} from './gameScreens/gameController';
 
 const template = `
 <div id="intro" class="intro">
@@ -11,6 +12,6 @@ ${footerTemplate()}`;
 
 const intro = render(template);
 const asterisk = intro.querySelector(`.intro__asterisk`);
-asterisk.onclick = () => changeScreen(greeting);
+asterisk.onclick = () => startGame(); // changeScreen(greeting);
 
 export default intro;

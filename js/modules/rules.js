@@ -1,10 +1,7 @@
-import {changeScreen, render} from '../render';
-import gameOne from './gameScreens/game-1';
-import screens from '../data/data';
+import {render} from '../render';
 import {headerTemplate} from './header';
 import footerTemplate from './footer';
-
-screens.isGamescreen = false;
+import {startGame} from './gameScreens/gameController';
 
 const template = `
 ${headerTemplate()}
@@ -40,6 +37,6 @@ nameInput.oninput = () => {
   }
 };
 
-buttonGo.onclick = () => changeScreen(gameOne);
+buttonGo.onclick = () => startGame();
 
 export default rules;

@@ -1,8 +1,7 @@
-import screens from "../data/data";
-import {initialState} from '../data/data';
+import {gameState} from '../data/data';
 
-export const headerTemplate = () => {
-  if (screens.isGamescreen) {
+export const headerTemplate = (isGamescreen = false) => {
+  if (isGamescreen) {
     return `<header class="header">
     <div class="header__back">
       <button class="back">
@@ -10,10 +9,10 @@ export const headerTemplate = () => {
         <img src="img/logo_small.svg" width="101" height="44">
       </button>
     </div>
-    <h1 class="game__timer">${initialState.time}</h1>
+    <h1 class="game__timer">${gameState.time}</h1>
     <div class="game__lives">
-      ${new Array(3 - initialState.lives).fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`).join(``)}
-      ${new Array(initialState.lives).fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`).join(``)}
+      ${new Array(3 - gameState.lives).fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`).join(``)}
+      ${new Array(gameState.lives).fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`).join(``)}
     </div>
     </header>`;
   } else {
