@@ -4,6 +4,7 @@ import {gameOne} from "./game-1";
 import {gameTwo} from "./game-2";
 import {gameThree} from "./game-3";
 import stats from "../stats";
+import getResult from "../user-result";
 
 
 export const startGame = () => {
@@ -18,12 +19,16 @@ export const showNextGameScreen = () => {
 
   if (gameState.lives < 0 && currentGameIndex < gameScreens.length) {
     gameState.isFailed = true;
-    changeScreen(stats);
+    gameState.total = getResult(gameState.userAnswers, gameState.lives);
+    changeScreen(stats());
+  } else if (nextScreen) {
+    showScreen(nextScreen);
   } else {
-    if (nextScreen) {
-      showScreen(nextScreen);
-    }
+    gameState.isFailed = false;
+    gameState.total = getResult(gameState.userAnswers, gameState.lives);
+    changeScreen(stats());
   }
+
 };
 
 const showScreen = (screen) => {

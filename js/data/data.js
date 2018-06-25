@@ -3,7 +3,8 @@ export const initialState = Object.freeze({
   time: 30,
   isFailed: false,
   currentGame: null,
-  userAnswers: []
+  userAnswers: [],
+  total: 0
 });
 
 export const gameState = Object.assign({}, initialState);
@@ -22,8 +23,7 @@ export const fullGameArr = () => {
     let game = {
       type,
       question: ``,
-      answers: [],
-      isPassed: null
+      answers: []
     };
 
     if (type === typesOfGame.oneCard) {

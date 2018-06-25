@@ -6,16 +6,13 @@ const Points = {
 
 const Speed = {
   FAST: `fast`,
-  NORMAL: `normal`,
+  NORMAL: `correct`,
   SLOW: `slow`
 };
 
 const getResult = (answersArr, lives) => {
   let result = 0;
 
-  if (lives <= 0 && answersArr.length < 10) {
-    return -1;
-  }
   if (typeof lives !== `number`) {
     throw new Error(`type of lives is not number`);
   }
@@ -39,6 +36,9 @@ const getResult = (answersArr, lives) => {
           throw new Error(`type of speed is not correct`);
       }
     }
+  }
+  if (lives < 0) {
+    lives = 0;
   }
   result += lives * 50;
   return result;
