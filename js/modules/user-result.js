@@ -13,6 +13,9 @@ const Speed = {
 const getResult = (answersArr, lives) => {
   let result = 0;
 
+  if (lives < 0 && answersArr.length < 10) {
+    return -1;
+  }
   if (typeof lives !== `number`) {
     throw new Error(`type of lives is not number`);
   }

@@ -13,7 +13,7 @@ const check1 = {
     },
     {
       passed: true,
-      speed: `normal`
+      speed: `correct`
     },
     {
       passed: true,
@@ -25,7 +25,7 @@ const check1 = {
     },
     {
       passed: true,
-      speed: `normal`
+      speed: `correct`
     },
     {
       passed: true,
@@ -37,7 +37,7 @@ const check1 = {
     },
     {
       passed: true,
-      speed: `normal`
+      speed: `correct`
     },
     {
       passed: true,
@@ -58,7 +58,7 @@ const check2 = {
     },
     {
       passed: true,
-      speed: `normal`
+      speed: `correct`
     }
   ]
 };
@@ -101,15 +101,12 @@ describe(`check results`, () => {
     assert.throw(() => getResult(1, {}), /type of lives is not number/);
   });
 
-  it(`should return -1 when correct answers count is less than 10`, () => {
-    assert.equal(-1, getResult(check2.answers, 2));
-    assert.equal(-1, getResult(check3.answers, 1));
-    assert.equal(-1, getResult([], 1));
-  });
-
-  it(`should return -1 when no more lives`, () => {
-    assert.equal(-1, getResult(check3.answers, 0));
-    assert.equal(-1, getResult(check1.answers, -10));
+  it(`should return -1 when no more lives and answers count is less than 10`, () => {
+    assert.equal(-1, getResult(check2.answers, -1));
+    assert.equal(-1, getResult(check3.answers, -3));
+    assert.equal(-1, getResult([], -123));
+    assert.equal(-1, getResult(check3.answers, -22));
+    assert.equal(-1, getResult(check2.answers, -10));
   });
 
   it(`should calculate points correctly`, () => {
