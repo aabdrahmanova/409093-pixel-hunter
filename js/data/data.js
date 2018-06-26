@@ -44,8 +44,6 @@ export const fullGameArr = () => {
   }
 };
 
-// export default gameState;
-
 const getRandomInt = (min, max) => {
   max = max + 1;
   return Math.floor(Math.random() * (max - min)) + min;
