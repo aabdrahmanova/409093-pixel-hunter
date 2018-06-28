@@ -111,7 +111,7 @@ const stats = () => {
 
   const renderStats = render(template);
   const back = renderStats.querySelector(`.back`);
-  back.onclick = () => changeScreen(greeting);
+  back.onclick = () => changeScreen(greeting());
 
   return renderStats;
 };

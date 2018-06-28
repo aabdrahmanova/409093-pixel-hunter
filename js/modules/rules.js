@@ -1,7 +1,7 @@
 import {render} from '../render';
 import {headerTemplate} from './header';
 import footerTemplate from './footer';
-import {startGame} from './gameScreens/gameController';
+import {startGame} from './gameController';
 
 const rules = () => {
   const template = `

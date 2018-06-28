@@ -1,10 +1,8 @@
-import {gameScreens, typesOfGame, gameState, fullGameArr} from "../../data/data";
-import {changeScreen} from "../../render";
-import {gameOne} from "./game-1";
-import {gameTwo} from "./game-2";
-import {gameThree} from "./game-3";
-import stats from "../stats";
-import getResult from "../user-result";
+import {gameScreens, gameState, fullGameArr} from "../data/data";
+import {changeScreen} from "../render";
+import stats from "./stats";
+import getResult from "./user-result";
+import {showScreen} from "./gameScreen";
 
 
 export const startGame = () => {
@@ -29,16 +27,4 @@ export const showNextGameScreen = () => {
     changeScreen(stats());
   }
 
-};
-
-const showScreen = (screen) => {
-  gameState.currentGame = screen;
-
-  if (screen.type === typesOfGame.oneCard) {
-    changeScreen(gameOne());
-  } else if (screen.type === typesOfGame.twoCards) {
-    changeScreen(gameTwo());
-  } else {
-    changeScreen(gameThree());
-  }
 };
