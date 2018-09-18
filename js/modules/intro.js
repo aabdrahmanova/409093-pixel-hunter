@@ -1,21 +1,12 @@
-import {changeScreen, render} from '../render';
+import IntroView from './intro-view';
+import {changeScreen} from '../render';
 import greeting from './greeting';
-import footerTemplate from './footer';
 
 const intro = () => {
-  const template = `
-  <div id="intro" class="intro">
-    <h1 class="intro__asterisk">*</h1>
-    <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-  </div>
-  ${footerTemplate()}`;
+  const introView = new IntroView();
+  introView.onClick = () => changeScreen(greeting());
 
-  const renderIntro = render(template);
-  const asterisk = renderIntro.querySelector(`.intro__asterisk`);
-  asterisk.onclick = () => changeScreen(greeting());
-
-  return renderIntro;
+  return introView.render();
 };
-
 
 export default intro;
