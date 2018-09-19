@@ -1,18 +1,16 @@
-import {changeScreen, render} from '../render';
-import greeting from './greeting';
-import {headerTemplate} from './header';
-import footerTemplate from './footer';
-import {gameState} from '../data/data';
+import AbstractView from '../abstract-view';
+import footerTemplate from '../footer';
+import {headerTemplate} from '../header';
+import {gameState} from '../../data/data';
+import {resultWithoutBonus} from './stats';
 
-const resultWithoutBonus = () => {
-  if (!gameState.isFailed) {
-    return gameState.total - (gameState.lives * 50);
+export default class StatsView extends AbstractView {
+  constructor() {
+    super();
   }
-  return gameState.total;
-};
 
-const stats = () => {
-  const template = `${headerTemplate()}
+  get template() {
+    return `${headerTemplate()}
     <div class="result">
     <h1>${gameState.isFailed ? `Вы проиграли` : `Победа!`}</h1>
     <table class="result__table">
@@ -108,12 +106,14 @@ const stats = () => {
     </table>
   </div>
   ${footerTemplate()}`;
+  }
 
-  const renderStats = render(template);
-  const back = renderStats.querySelector(`.back`);
-  back.onclick = () => changeScreen(greeting());
+  bind() {
+    const back = this.element.querySelector(`.back`);
+    back.onclick = () => this.onClick();
+  }
 
-  return renderStats;
-};
+  onClick() {
+  }
 
-export default stats;
+}

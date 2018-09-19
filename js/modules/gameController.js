@@ -1,8 +1,8 @@
 import {gameScreens, gameState, fullGameArr} from "../data/data";
-import {changeScreen} from "../render";
-import stats from "./stats";
+import {changeScreen} from "./render";
+import stats from "./stats/stats";
 import getResult from "./user-result";
-import {showScreen} from "./gameScreen";
+import {showScreen} from "./gameScreens/gameScreen";
 
 
 export const startGame = () => {
