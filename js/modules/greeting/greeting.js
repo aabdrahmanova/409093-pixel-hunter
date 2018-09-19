@@ -1,4 +1,4 @@
-import {changeScreen} from '../../render';
+import {changeScreen} from '../render';
 import rules from '../rules/rules';
 import GreetingView from './greeting-view';
 

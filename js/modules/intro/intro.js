@@ -1,5 +1,5 @@
 import IntroView from './intro-view';
-import {changeScreen} from '../../render';
+import {changeScreen} from '../render';
 import greeting from '../greeting/greeting';
 
 const intro = () => {
