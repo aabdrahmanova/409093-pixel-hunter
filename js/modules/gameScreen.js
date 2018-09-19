@@ -3,7 +3,7 @@ import {changeScreen, render} from "../render";
 import {headerTemplate} from "./header";
 import footerTemplate from "./footer";
 import {showNextGameScreen} from "./gameController";
-import greeting from "./greeting";
+import greeting from "./greeting/greeting";
 
 export const showScreen = (screen) => {
   gameState.currentGame = screen;

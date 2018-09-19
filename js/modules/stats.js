@@ -1,5 +1,5 @@
 import {changeScreen, render} from '../render';
-import greeting from './greeting';
+import greeting from './greeting/greeting';
 import {headerTemplate} from './header';
 import footerTemplate from './footer';
 import {gameState} from '../data/data';
