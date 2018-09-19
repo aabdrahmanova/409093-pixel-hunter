@@ -1,7 +1,5 @@
-import AbstractView from '../abstract-view';
-import footerTemplate from './footer';
-// import {changeScreen} from '../render';
-// import greeting from './greeting';
+import AbstractView from '../../abstract-view';
+import footerTemplate from '../footer';
 
 export default class IntroView extends AbstractView {
   constructor() {
