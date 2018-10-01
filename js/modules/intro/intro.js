@@ -9,4 +9,4 @@ const intro = () => {
   return introView.element;
 };
 
-export default intro;
+export default intro();

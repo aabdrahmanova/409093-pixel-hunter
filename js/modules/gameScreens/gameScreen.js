@@ -1,19 +1,19 @@
-import {gameState, typesOfGame} from "../../data/data";
-import {showNextGameScreen} from "../gameController";
+import {typesOfGame} from "../../data/data";
 import greeting from "../greeting/greeting";
 import OneCardView from "./oneCard-view";
 import TwoCardsView from "./twoCard-view";
 import ThreeCardsView from "./threeCards-view";
 import {changeScreen} from "../render";
+import {gameScreen} from "../../main";
 
 export const showScreen = (screen) => {
-  gameState.currentGame = screen;
+  gameScreen.model.currentGame = screen;
 
   if (screen.type === typesOfGame.oneCard) {
     const gameOne = () => {
       const oneCardView = new OneCardView();
 
-      oneCardView.onChange = () => showNextGameScreen();
+      oneCardView.onChange = () => gameScreen.nextScreen();
 
       return oneCardView.element;
     };
@@ -31,20 +31,20 @@ export const showScreen = (screen) => {
           let correctedAnswerCount = 0;
 
           checkedRadio.forEach((element) => {
-            if ((element.name === `question1` && element.value === gameState.currentGame.answers[0].correctAnswer) ||
-                (element.name === `question2` && element.value === gameState.currentGame.answers[1].correctAnswer)) {
+            if ((element.name === `question1` && element.value === gameScreen.model.currentGame.answers[0].correctAnswer) ||
+                (element.name === `question2` && element.value === gameScreen.model.currentGame.answers[1].correctAnswer)) {
               correctedAnswerCount++;
             }
           });
 
           if (correctedAnswerCount === 2) {
-            gameState.userAnswers.push({speed: `correct`, passed: true});
+            gameScreen.model.userAnswers.push({speed: `correct`, passed: true});
           } else {
-            gameState.userAnswers.push({speed: `wrong`, passed: false});
-            gameState.lives--;
+            gameScreen.model.userAnswers.push({speed: `wrong`, passed: false});
+            gameScreen.die();
           }
 
-          showNextGameScreen();
+          gameScreen.nextScreen();
         }
       };
 
@@ -57,7 +57,7 @@ export const showScreen = (screen) => {
     const gameThree = () => {
       const threeCardsView = new ThreeCardsView();
 
-      threeCardsView.onClick = () => showNextGameScreen();
+      threeCardsView.onClick = () => gameScreen.nextScreen();
 
       return threeCardsView.element;
     };

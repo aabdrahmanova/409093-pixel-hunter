@@ -1,7 +1,7 @@
 import AbstractView from '../abstract-view';
 import footerTemplate from '../footer';
 import {headerTemplate} from '../header';
-import {gameState} from '../../data/data';
+import {gameScreen} from '../../main';
 
 export default class OneCardView extends AbstractView {
   constructor() {
@@ -12,10 +12,10 @@ export default class OneCardView extends AbstractView {
     return `
     ${headerTemplate(true)}
       <div class="game">
-      <p class="game__task">${gameState.currentGame.question}</p>
+      <p class="game__task">${gameScreen.model.currentGame.question}</p>
       <form class="game__content  game__content--wide">
         <div class="game__option">
-          <img src="${gameState.currentGame.answers[0].src}" alt="Option 1" width="705" height="455">
+          <img src="${gameScreen.model.currentGame.answers[0].src}" alt="Option 1" width="705" height="455">
           <label class="game__answer  game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -28,7 +28,7 @@ export default class OneCardView extends AbstractView {
       </form>
       <div class="stats">
         <ul class="stats">
-          ${gameState.userAnswers.map((index) =>
+          ${gameScreen.model.userAnswers.map((index) =>
     `<li class="stats__result stats__result--${index.speed}"></li>`).join(``)}
         </ul>
       </div>
@@ -41,11 +41,11 @@ export default class OneCardView extends AbstractView {
 
     form.onchange = (e) => {
       let target = e.target;
-      if (target.value === gameState.currentGame.answers[0].correctAnswer) {
-        gameState.userAnswers.push({speed: `correct`, passed: true});
+      if (target.value === gameScreen.model.currentGame.answers[0].correctAnswer) {
+        gameScreen.model.userAnswers.push({speed: `correct`, passed: true});
       } else {
-        gameState.userAnswers.push({speed: `wrong`, passed: false});
-        gameState.lives--;
+        gameScreen.model.userAnswers.push({speed: `wrong`, passed: false});
+        gameScreen.die();
       }
       this.onChange();
     };

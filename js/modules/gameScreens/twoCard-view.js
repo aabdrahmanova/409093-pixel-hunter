@@ -1,7 +1,7 @@
 import AbstractView from '../abstract-view';
 import footerTemplate from '../footer';
 import {headerTemplate} from '../header';
-import {gameState} from '../../data/data';
+import {gameScreen} from '../../main';
 
 export default class TwoCardsView extends AbstractView {
   constructor() {
@@ -12,10 +12,10 @@ export default class TwoCardsView extends AbstractView {
     return `
     ${headerTemplate(true)}
     <div class="game">
-      <p class="game__task">${gameState.currentGame.question}</p>
+      <p class="game__task">${gameScreen.model.currentGame.question}</p>
       <form class="game__content">
         <div class="game__option">
-          <img src="${gameState.currentGame.answers[0].src}" alt="Option 1" width="468" height="458">
+          <img src="${gameScreen.model.currentGame.answers[0].src}" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -26,7 +26,7 @@ export default class TwoCardsView extends AbstractView {
           </label>
         </div>
         <div class="game__option">
-          <img src="${gameState.currentGame.answers[1].src}" alt="Option 2" width="468" height="458">
+          <img src="${gameScreen.model.currentGame.answers[1].src}" alt="Option 2" width="468" height="458">
           <label class="game__answer  game__answer--photo">
             <input name="question2" type="radio" value="photo">
             <span>Фото</span>
@@ -39,7 +39,7 @@ export default class TwoCardsView extends AbstractView {
       </form>
       <div class="stats">
         <ul class="stats">
-        ${gameState.userAnswers.map((index) =>
+        ${gameScreen.model.userAnswers.map((index) =>
     `<li class="stats__result stats__result--${index.speed}"></li>`).join(``)}
         </ul>
       </div>
